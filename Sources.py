@@ -505,3 +505,96 @@ class NBCNewYork:
         driver.find_element(By.CLASS_NAME, "newsletters__button").click()
         driver.quit()
         print("Successfully subscribed to NBC New York")
+
+class OutsideOnline:
+    def __init__(self, email):
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+        driver.get('https://link.outsideonline.com/join/6du/multisignup')
+        time.sleep(1)
+        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.CLASS_NAME, 'input_em'))
+
+        driver.find_element(By.CLASS_NAME, "input_em").send_keys(email)
+        elements = driver.find_elements(By.CLASS_NAME, "list")
+        for item in elements:
+            item.find_element(By.CLASS_NAME, "newsletter_name").click()
+        
+        driver.find_element(By.CLASS_NAME, "btn.st-recaptcha").click()
+        driver.quit()
+        print("Successfully subscribed to OutsideOnline")
+
+class FoxNews:
+    def __init__(self,email):
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+        driver.get('https://www.foxnews.com/newsletters')
+        time.sleep(1)
+        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.CLASS_NAME, 'newsletter-list'))
+        
+        group = driver.find_elements(By.CLASS_NAME, "newsletter-item")
+        for item in group:
+            if item == group[0]:
+                item.find_element(By.CLASS_NAME, "button.subscribe").click()
+                item.find_element(By.CLASS_NAME, "input-email").send_keys(email)
+                item.find_element(By.CLASS_NAME, "button.enter").click()
+                time.sleep(1)
+            else:
+                item.find_element(By.CLASS_NAME, "button.subscribe").click()
+                item.find_element(By.CLASS_NAME, "button.enter").click()
+                time.sleep(.5)
+        driver.quit()
+        print("Successfully subscribed to FoxNews")
+
+class CBSNews:
+    def __init__(self,email):
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+        driver.get('https://www.cbsnews.com/newsletters/')
+        time.sleep(1)
+        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.CLASS_NAME, 'newsletter-grid'))
+
+        group = driver.find_elements(By.CLASS_NAME, "newsletter-item")
+        for item in group:
+            item.find_element(By.CLASS_NAME, "button__label").click()
+            time.sleep(.5)
+        
+        iframe = driver.find_element(By.CLASS_NAME, "embed__content.lazyloaded")
+        driver.switch_to.frame(iframe)
+
+        driver.find_element(By.ID, "user_email").send_keys(email)
+        driver.find_element(By.ID, "submitButton").click()
+        driver.switch_to.default_content()
+
+        driver.quit()
+        print("Successfully subscribed to CBS News")
+
+class CBSSports:
+    def __init__(self,email):
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+        driver.get('https://www.cbssports.com/newsletters/cbs-sports-hq/')
+        time.sleep(1)
+        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.CLASS_NAME, 'CheckButton-checkbox'))
+
+        driver.find_element(By.CLASS_NAME, "CheckButton-text").click()
+        driver.find_element(By.CLASS_NAME, "Newsletter-emailAddress.Form-inputText").send_keys(email)
+        driver.find_element(By.CLASS_NAME, "Newsletter-submit.Form-submitButton--primary").click()
+
+        driver.quit()
+        print("Successfully subscribed to CBS Sports")
+
+class SustainableAmerica:
+    def __init__(self,email):
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+        driver.get('https://sustainableamerica.org/#subscribe')
+        time.sleep(3)
+        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.ID, 'mce-EMAIL'))
+
+        driver.find_element(By.ID, "mce-EMAIL").send_keys(email)
+        driver.find_element(By.ID, "mce-group[1]-1-0").click()
+        driver.find_element(By.ID, "mce-group[1]-1-1").click()
+        driver.find_element(By.ID, "mc-embedded-subscribe").click()
+
+        driver.quit()
+        print("Successfully subscribed to Sustainable America")
