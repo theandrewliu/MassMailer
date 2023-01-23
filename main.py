@@ -21,7 +21,7 @@ from Sources import (
 )
 
 email = "syntheticmangaming@gmail.com"
-# email = "asdfasdfasdfas@SSasdfasdfasfasdfasdfasdf.com"
+
 # NBC26(email)
 # CrossWalk(email)
 # HealthLine(email)
