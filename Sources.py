@@ -41,7 +41,6 @@ class NBC26:
         time.sleep(1)
         WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.CLASS_NAME, 'form__note.is-success'))
 
-
         # Go to Weather Alerts section
         driver.find_element(By.CLASS_NAME, 'button--text.suh-alerts').click()
 
@@ -342,7 +341,7 @@ class NBCBoston:
             element.find_element(By.CSS_SELECTOR, "label").click()
             continue
         
-        driver.find_element(By.CLASS_NAME, "newsletters__button").click()
+        driver.find_element(By.CLASS_NAME, "newsletters__button-text").click()
         driver.quit()
         print("Successfully subscribed to NBC Boston")
 
