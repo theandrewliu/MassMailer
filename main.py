@@ -20,7 +20,7 @@ from Sources import (
     SustainableAmerica
 )
 
-email = "syntheticmangaming@gmail.com"
+email = "targetemail@gmail.com"
 
 # NBC26(email)
 # CrossWalk(email)
